@@ -1,4 +1,13 @@
-# archerysec CLI
+# Archery CLI
+
+## Installation
+
+```
+$ git clone https://github.com/archerysec/archerysec-cli.git
+$ cd archerysec-cli
+$ pip install -r requirements.txt
+
+```
 
 ```
 (env) Anand:archerysec-cli anand$ python archerysec.py
