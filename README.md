@@ -25,7 +25,7 @@ You can Use Archery installation instruction from [Archery DOC](https://docs.arc
 
 Archery CLI can then be used with the following commands:
 ```
-(env) Anand:archerysec-cli anand$ python archerysec.py
+(env) Anand:archerysec-cli anand$ archerysec-cli
 
 
                    _
@@ -40,7 +40,7 @@ Archery CLI can then be used with the following commands:
  Open Source Vulnerability Assessment and Management.
 
 
-Usage: archerysec.py [options]
+Usage: archerysec-cli [options]
 
 Options:
   -h, --help            show this help message and exit
