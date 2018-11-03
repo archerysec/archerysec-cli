@@ -257,7 +257,7 @@ def main():
     else:
         parser.print_help()
         print("")
-        print("Example to get auth token: archerycli.py -s http://127.0.0.1:8000 -u admin -p admin@123A -t")
+        print("Example to get auth token: archerysec-cli -s http://127.0.0.1:8000 -u admin -p admin@123A -t")
 
 
 if __name__ == "__main__":
