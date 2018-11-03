@@ -5,6 +5,13 @@ A commandline tool that wraps the Archerysec REST API for controlling Archery an
 
 ## Installation
 
+To install the latest release from PyPI, you can run the following command:
+
+```
+pip install archerysec-cli
+```
+To install the latest development version of Archerysec CLI, you can run the following:
+
 ```
 $ git clone https://github.com/archerysec/archerysec-cli.git
 $ cd archerysec-cli
