@@ -1,7 +1,8 @@
 deploy:
   provider: pypi
-  user: $Username
-  password: $Password
+  user: archerysec
+  password:
+    secure: Kk/FDZiZ4uCoD5EAJDGpM8nKWZAcx8P3y+aEntoF2LPkKB01QRS7gnIY09VqT97AorhtoYtnhuyZj3E9x7N96SPszoSnaYlTMPVj1OAs9kf5rjDNZCntATFCN4cEQXPxJg0BTv69ljqYn+G0xYAgsB+3pQdIP1154AQp3e4pI1WkhLbWNjSsA4eVF92i0TnjQVGS7tf7mpIpG+o6EFCVucwxGzvB+EV1zj/ZVk3bmqW3fkeIw1GpF5nzwKTVHbJqqPAB+Ts1fBMyW7Sqv8TqT5fzqHLGVv6kQf42KzT+/qjye1kcYW81hTsUBDgUAMDthSuO+iQNV2TtBcfJHzJFc432prahK5vB7ja4GK+k+XT2wcJ67e8B7XuppKcpE+el1fKbowVSk+0Cny2XyAwhPWu9+2mHXUstoepYGQzslGHAHAG0pvLiYHYAMHqxfU+UG19PXxlr0g6Yumvv1AxHWm6vBjMeJAR7mhKVbikI+MPBNiKWPHdTVXw2GYIirU7S5C4XSprlCtxFKNl9vy1LSSS7Q+Ey/Yy4vwZ7Zg/AQpXLsrW1nuux1TLLOY4Q6Ar8LKXah7xGv0R1l5mQYWPjSwEHx8zcETzDcgBgqAR36Mxx5P7noGSJi/ajKKo09nq5jZs7s2qJ/53lPP3jtqYKKr+fwzKN0lFLkJ+Y3oH33PU=
   distributions: sdist bdist_wheel
   on:
     tags: true
