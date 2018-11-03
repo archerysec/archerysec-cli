@@ -110,5 +110,5 @@ Options:
     --scanner=SCANNER   Select scanners [ zap_scan, burp_scan, arachni,
                         netsparker, webinspect, banditscan]
 
-Example to get auth token: archerycli.py -s http://127.0.0.1:8000 -u admin -p admin@123A -t
+Example to get auth token: archerysec-cli -s http://127.0.0.1:8000 -u admin -p admin@123A -t
 ```
