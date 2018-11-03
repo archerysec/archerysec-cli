@@ -7,12 +7,10 @@ matrix:
   - python: 2.7
     env: TOXENV=py27
 
+
+
 cache:
   - pip
-
-after_success:
-  - "Done"
-
 
 deploy:
   provider: pypi
