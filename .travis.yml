@@ -7,7 +7,7 @@ install:
   - pip install -q -r requirements.txt .
 
 script:
-  - coverage run --source "$(basename "$PWD")" setup.py test
+  - python setup.py install
 
 notifications:
   email: false
