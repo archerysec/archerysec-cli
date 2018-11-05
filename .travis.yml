@@ -1,0 +1,49 @@
+sudo: false
+language: python
+dist: trusty
+
+matrix:
+  include:
+    # Default Python
+    - env: TOXENV=flake8
+    - env: TOXENV=markdown-lint
+      before_install: npm install -g markdownlint-cli
+    - env: TOXENV=linkchecker
+    - env: TOXENV=jshint
+      before_install: npm install -g jshint
+    - env: TOXENV=csslint
+      before_install: npm install -g csslint
+    # Python version specific
+    - python: '2.7'
+      env: TOXENV=py27-integration
+    - python: '2.7'
+      env: TOXENV=py27-min-req
+    - python: '2.7'
+      env: TOXENV=py27-unittests
+    - python: 'pypy'
+      env: TOXENV=pypy-integration
+    - python: 'pypy'
+      env: TOXENV=pypy-min-req
+    - python: 'pypy'
+      env: TOXENV=pypy-unittests
+
+install:
+  - pip install codecov
+  - pip install tox
+
+script:
+  - git clean -f -d -x
+  - tox
+
+after_success: codecov
+
+deploy:
+  provider: pypi
+  user: archerysec
+  distributions: "sdist bdist_wheel"
+  password:
+    secure:
+  on:
+    tags: true
+    repo: archerysec/archerysec-cli
+    condition: "$TOXENV = py27-integration"
