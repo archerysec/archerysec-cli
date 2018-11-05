@@ -1,0 +1,23 @@
+language: python
+
+python:
+  - '2.7'
+
+install:
+  - pip install -q -r requirements.txt .
+
+script:
+  - coverage run --source "$(basename "$PWD")" setup.py test
+
+notifications:
+  email: false
+
+
+deploy:
+  provider: pypi
+  user: anandtiwarics
+  password:
+    secure: SzC9Y0NiLQcy3g8ggXgp8z/c6pWyz3Zu+S5U+s/8qJ+R7agGX8rWEH0sXDkVNqWqD7d1XSzoiB23E6hIzr87FyRzNgHQbVooHyiX4NjbL/NJM93jRQQCzW2RB2+ShJ+MzNZA+8iB3/S4RGT+AUPP0jo1VeRwrXfruWpf/z+RZjRxJnZb/y07h721GgwFFfaGZhnD218tTDSjEhiQJsRR0g938umuIHinKHLLq2StOrkt/vtT2B1n+srpk5fBzb7fPa+Hbj9UfdznCEQJKNaimy311Uklyi5xmZY7PIbCxQlVOvcdVtgh7gaoRruzFkXBRYFYQkAFteiyyhsRCYmt37kyPUcsRzSG6RIOskv6F1cCnKSsbP15U1AAi0dBGEbWMMKCfUn28UehRLnnfyZcRqYZlwY+GXuYrQLxKn9Dtla4wuSG6USrhpQanr5D2b/BekAhYQssCG0rUY5a7e8BXIT6NgFQI9SCzX8TyTXV0F1wM3/lMqUSPyAB2PbOljEVZTh7T2/omhOU+byLM7YO+5dbYXCAUcweoChknTMqHe+Nl77cBskMGSU7ArsGQJcTMztPzyplGd1VgcunGxhCfwHY+Ml2UEYgM2cXHH9xAI6hzWXz1aFJ4fT2FSx2cxjuLNh8YFiv24rFFvQxT7u2oTuFC9cd4xoLcXZhnykEGfI=
+  on:
+    distributions: sdist bdist_wheel
+    repo: archerysec/archerysec-cli
