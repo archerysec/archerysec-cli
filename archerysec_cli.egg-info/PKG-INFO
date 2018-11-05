@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: archerysec-cli
+Version: 0.4.0
+Summary: A commandline tool that wraps the Archerysec REST API for controlling Archery and executing quick, targeted scans.
+Home-page: https://github.com/archerysec/archerysec-cli.git
+Author: Anand Tiwari
+Author-email:  
+License:  
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Topic :: Security
+Classifier: Topic :: Software Development :: Quality Assurance
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Provides-Extra: dev

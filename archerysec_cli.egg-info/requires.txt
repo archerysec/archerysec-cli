@@ -1,0 +1,16 @@
+certifi==2018.10.15
+chardet==3.0.4
+Click==7.0
+idna==2.7
+pyArchery
+requests==2.20.0
+urllib3==1.24
+
+[dev]
+coverage==3.7.1
+ddt==1.0.1
+mock==2.0.0
+pep8==1.6.2
+pylint==1.5.5
+pytest==3.0.7
+responses==0.5.1
