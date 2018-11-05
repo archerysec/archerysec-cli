@@ -17,4 +17,4 @@ deploy:
   on:
     tags: true
     repo: archerysec/archerysec-cli
-    condition: "$TOXENV = py35"
+    condition: "$TOXENV = py27"
