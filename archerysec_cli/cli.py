@@ -144,6 +144,9 @@ def main():
     group.add_option("--TARGET",
                      help="Scan URL or IP",
                      action="store")
+    group.add_option("--file_type",
+                     help="File type (JSON, XML)",
+                     action="store")
     group.add_option("--scanner",
                      help="Select scanners [ zap_scan, "
                           "burp_scan, "
@@ -245,15 +248,26 @@ def main():
 
             headers = {'Authorization': 'JWT ' + token}
 
-            f = (open(args.file, 'rb')).read()
+            if args.file_type == "JSON":
 
-            files = {'filename': (None, f), 'project_id': (None, args.project_id),
-                     'scanner': (None, args.scanner), 'scan_url': (None, args.TARGET)}
+                f = (open(args.file, 'rb')).read()
 
-            url = args.server + '/api/uploadscan/'
+                files = {'filename': (None, f), 'project_id': (None, args.project_id),
+                         'scanner': (None, args.scanner), 'scan_url': (None, args.TARGET)}
 
-            send_request = requests.post(url, files=files, headers=headers)
-            print send_request
+                url = args.server + '/api/uploadscan/'
+
+                send_request = requests.post(url, files=files, headers=headers)
+                print send_request
+            elif args.file_type == "XML":
+
+                files = {'filename': (None, args.file), 'project_id': (None, args.project_id),
+                         'scanner': (None, args.scanner), 'scan_url': (None, args.TARGET)}
+
+                url = args.server + '/api/uploadscan/'
+
+                send_request = requests.post(url, files=files, headers=headers)
+                print send_request
     else:
         parser.print_help()
         print("")
