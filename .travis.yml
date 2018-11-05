@@ -1,23 +1,17 @@
 language: python
-
 python:
-  - '2.7'
-
+- '2.7'
 install:
-  - pip install -q -r requirements.txt .
-
+- pip install -q -r requirements.txt .
 script:
-  - python setup.py install
-
+- python setup.py install
 notifications:
   email: false
-
-
 deploy:
   provider: pypi
-  user: anandtiwarics
+  user: archerysec
   password:
-    secure: SzC9Y0NiLQcy3g8ggXgp8z/c6pWyz3Zu+S5U+s/8qJ+R7agGX8rWEH0sXDkVNqWqD7d1XSzoiB23E6hIzr87FyRzNgHQbVooHyiX4NjbL/NJM93jRQQCzW2RB2+ShJ+MzNZA+8iB3/S4RGT+AUPP0jo1VeRwrXfruWpf/z+RZjRxJnZb/y07h721GgwFFfaGZhnD218tTDSjEhiQJsRR0g938umuIHinKHLLq2StOrkt/vtT2B1n+srpk5fBzb7fPa+Hbj9UfdznCEQJKNaimy311Uklyi5xmZY7PIbCxQlVOvcdVtgh7gaoRruzFkXBRYFYQkAFteiyyhsRCYmt37kyPUcsRzSG6RIOskv6F1cCnKSsbP15U1AAi0dBGEbWMMKCfUn28UehRLnnfyZcRqYZlwY+GXuYrQLxKn9Dtla4wuSG6USrhpQanr5D2b/BekAhYQssCG0rUY5a7e8BXIT6NgFQI9SCzX8TyTXV0F1wM3/lMqUSPyAB2PbOljEVZTh7T2/omhOU+byLM7YO+5dbYXCAUcweoChknTMqHe+Nl77cBskMGSU7ArsGQJcTMztPzyplGd1VgcunGxhCfwHY+Ml2UEYgM2cXHH9xAI6hzWXz1aFJ4fT2FSx2cxjuLNh8YFiv24rFFvQxT7u2oTuFC9cd4xoLcXZhnykEGfI=
+    secure: Im5BRfLZV6KlW/zMhxe2XTpbKdtsF5roEhz1AoRJYQiV5MRdC7cvQ9sxH9MzwylN7Zu5ETL4PEZZENJm23Z/IYbYhblcshoAAKf8XqkN+rVKRYD15SLBlwjTRkYszIMEBv4uMmScOYqaoF9CJoqg1dX18KJe0pFkfauzfB7oFAuZNmpLTlx248poZgWhjvuOqjLyXlD+jj0jIE9qFCzYnyrBGlstixiUfT9dbT1oaEYEX5y0x2ml3qqyzeychn1XoNnxRYf3L833CZF5wGrfbTUP9sa9E5VnnbY+UVefhN2NDEU+OQ/m3lwRSfWoE2M7KVbFElscWDf84ChJS0QjiOF+tBwFJ1E+exodHgWVfDNu7Hm4AUirR3lU23XQZ7kJ89961AYBURm6G+XsOrONsAVBujwoWXQFGr8blJK2NwnnTUbSuGetUOmq/y9zP1mCig4W333SEUHhws/WdgcLYkD5DrvODJ9GIZFz54xsLiz3nbAnJGrsV7fw6MHPthFizTkY2i3RoPW3hiiIC8MkwmxuQfaYjlBgvwXO4uQbnmtnDSv+Scq8/IochUnapFxu0M0kWT9s2DDVL1AyXOLi6K205ZdKpWfurpgOephn9W3Sm+K848/wpJ6s3N8rjwLFfSv3MzPmWJP74JbPorHf+JFeVmp/jJRdiv9SiePV2Zw=
   on:
     distributions: sdist bdist_wheel
     repo: archerysec/archerysec-cli
