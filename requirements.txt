@@ -1,7 +1,7 @@
-certifi==2018.10.15
-chardet==3.0.4
-Click==7.0
-idna==2.7
-pyArchery==1.0
-requests==2.20.0
+certifi
+chardet
+Click
+idna
+pyArchery
+requests
 urllib3==1.24

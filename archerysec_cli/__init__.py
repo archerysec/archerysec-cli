@@ -3,4 +3,4 @@ A Archery CLI tool for targeted tests from the command line.
 .. moduleauthor:: Anand Tiwari
 """
 
-__version__ = '0.5.0'
+__version__ = '0.6.0'
