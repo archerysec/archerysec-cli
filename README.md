@@ -113,3 +113,16 @@ Options:
 
 Example to get auth token: archerysec-cli -s http://127.0.0.1:8000 -u admin -p admin@123A -t
 ```
+
+Create Project:
+
+```
+$archerysec-cli -s http://127.0.0.1:8000 -u admin -p admin@123 --createproject --project_name=test_project --project_disc="test project"  --project_start=2018-01-11 --project_end=2018-01-11 --project_owner=anand
+```
+
+Launch ZAP Scan:
+
+```
+$archerysec-cli -s http://127.0.0.1:8000 -u admin -p admin@123 --zapscan --target_url=http://demo.testfire.net --project_id=aa6730d4-d3c8-40ab-9ac1-27592afbdcb3
+```
+

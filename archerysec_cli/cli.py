@@ -169,26 +169,38 @@ def main():
     auth_token = authenticate.data
 
     if args.token:
-        for key, value in auth_token.viewitems():
-            token = value
-            print token
+        try:
+            for key, value in auth_token.viewitems():
+                token = value
+                print token
+        except:
+            print("Error !!!!")
+            print ("Please check Username and Password")
     elif args.projectlist:
-        for key, value in auth_token.viewitems():
-            token = value
-            project = archery.list_project(auth=token)
-            print("Project List :-")
-            print project.data_json()
+        try:
+            for key, value in auth_token.viewitems():
+                token = value
+                project = archery.list_project(auth=token)
+                print("Project List :-")
+                print project.data_json()
+        except:
+            print("Error !!!!")
+            print ("Please check Username and Password")
     elif args.createproject:
-        for key, value in auth_token.viewitems():
-            token = value
-            create_proj = archery.create_project(auth=token,
-                                                 project_name=args.project_name,
-                                                 project_disc=args.project_disc,
-                                                 project_start=args.project_start,
-                                                 project_end=args.project_end,
-                                                 project_owner=args.project_owner)
-            print("Project :-")
-            print create_proj.data_json()
+        try:
+            for key, value in auth_token.viewitems():
+                token = value
+                create_proj = archery.create_project(auth=token,
+                                                     project_name=args.project_name,
+                                                     project_disc=args.project_disc,
+                                                     project_start=args.project_start,
+                                                     project_end=args.project_end,
+                                                     project_owner=args.project_owner)
+                print("Project :-")
+                print create_proj.data_json()
+        except:
+            print("Error !!!!")
+            print ("Please check Username and Password")
     elif args.zapscanlist:
         for key, value in auth_token.viewitems():
             token = value
@@ -204,14 +216,16 @@ def main():
             )
             print web_scan_result.data_json()
 
-    elif args.zapscanresult:
+    elif args.zapscan:
         for key, value in auth_token.viewitems():
             token = value
-            network_scans = archery.network_scan(
+            web_scan_create = archery.create_webscan(
                 auth=token,
+                scan_url=args.target_url,
+                project_id=args.project_id,
+                scanner='zap_scan'
             )
-
-            print network_scans.data_json()
+            print web_scan_create.data_json()
 
     elif args.openvaslist:
         for key, value in auth_token.viewitems():
@@ -252,13 +266,13 @@ def main():
                          'scanner': (None, args.scanner), 'scan_url': (None, args.TARGET)}
                 url = args.server + '/api/uploadscan/'
                 send_request = requests.post(url, files=files, headers=headers)
-                print send_request
+                print send_request.text
             elif args.file_type == "XML":
                 files = {'filename': (None, args.file), 'project_id': (None, args.project_id),
                          'scanner': (None, args.scanner), 'scan_url': (None, args.TARGET)}
                 url = args.server + '/api/uploadscan/'
                 send_request = requests.post(url, files=files, headers=headers)
-                print send_request
+                print send_request.text
     else:
         parser.print_help()
         print("")
