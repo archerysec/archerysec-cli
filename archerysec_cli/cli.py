@@ -42,7 +42,7 @@ def main():
                      help="Target URL's",
                      action="store")
     group.add_option("--scan_id",
-                     help="Target URL's",
+                     help="Target Scan ID",
                      action="store")
     group.add_option("--target_ip",
                      help="Target IP's",
@@ -97,6 +97,15 @@ def main():
     group.add_option("--zapscan",
                      help="Launch ZAP Scan",
                      action="store_true")
+
+    # Get ZAP Scan status
+    group.add_option("--zapscanstatus",
+                     help="Get ZAP Scan Status"
+                          " (Ex. python archery_cli.py -s "
+                          "http://127.0.0.1:8000 -u admin -p admin@123A --zapscanstatus"
+                          " --scan_id=4ea6852b-bbf2-4171-9e98-4d798731e87a)",
+                     action="store_true"
+                     )
 
     # Get ZAP Scan results
     group.add_option("--zapscanresult",
@@ -215,6 +224,15 @@ def main():
                 scan_id=args.scan_id,
             )
             print web_scan_result.data_json()
+
+    elif args.zapscanstatus:
+        for key, value in auth_token.viewitems():
+            token = value
+            zap_scan_status = archery.zap_scan_status(
+                auth=token,
+                scan_id=args.scan_id,
+            )
+            print zap_scan_status.data_json()
 
     elif args.zapscan:
         for key, value in auth_token.viewitems():
