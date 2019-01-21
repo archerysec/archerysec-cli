@@ -205,7 +205,6 @@ def main():
                                                      project_start=args.project_start,
                                                      project_end=args.project_end,
                                                      project_owner=args.project_owner)
-                print("Project :-")
                 print create_proj.data_json()
         except:
             print("Error !!!!")
