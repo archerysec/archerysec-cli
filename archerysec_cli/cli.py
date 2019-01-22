@@ -117,6 +117,11 @@ def main():
                      )
     parser.add_option_group(group)
 
+    # Launch Arachni Scan
+    group.add_option("--arachni",
+                     help="Launch Arachni Scan",
+                     action="store_true")
+
     # Get OpenVAS Scan Results
     group = OptionGroup(parser, "OpenVAS Scanner",
                         "OpenVAS Scans module to perform OpenVAS Scan"
@@ -241,6 +246,17 @@ def main():
                 scan_url=args.target_url,
                 project_id=args.project_id,
                 scanner='zap_scan'
+            )
+            print web_scan_create.data_json()
+
+    elif args.arachni:
+        for key, value in auth_token.viewitems():
+            token = value
+            web_scan_create = archery.create_webscan(
+                auth=token,
+                scan_url=args.target_url,
+                project_id=args.project_id,
+                scanner='arachni'
             )
             print web_scan_create.data_json()
 
