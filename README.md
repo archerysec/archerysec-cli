@@ -2,8 +2,6 @@
 
 A commandline tool that wraps the Archerysec REST API for controlling Archery and executing quick, targeted scans.
 
-[![asciicast](https://asciinema.org/a/nrMUAcH2LKb7zXt5QDtkW5z0l.svg)](https://asciinema.org/a/nrMUAcH2LKb7zXt5QDtkW5z0l)
-
 ## Installation
 
 To install the latest release from PyPI, you can run the following command:
