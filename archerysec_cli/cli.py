@@ -1,6 +1,6 @@
 from optparse import OptionParser
 from optparse import OptionGroup
-from archery import api
+from pyArchery import api
 import requests
 
 data = """
