@@ -10,8 +10,7 @@ notifications:
 deploy:
   provider: pypi
   user: archerysec
-  password:
-    secure: Im5BRfLZV6KlW/zMhxe2XTpbKdtsF5roEhz1AoRJYQiV5MRdC7cvQ9sxH9MzwylN7Zu5ETL4PEZZENJm23Z/IYbYhblcshoAAKf8XqkN+rVKRYD15SLBlwjTRkYszIMEBv4uMmScOYqaoF9CJoqg1dX18KJe0pFkfauzfB7oFAuZNmpLTlx248poZgWhjvuOqjLyXlD+jj0jIE9qFCzYnyrBGlstixiUfT9dbT1oaEYEX5y0x2ml3qqyzeychn1XoNnxRYf3L833CZF5wGrfbTUP9sa9E5VnnbY+UVefhN2NDEU+OQ/m3lwRSfWoE2M7KVbFElscWDf84ChJS0QjiOF+tBwFJ1E+exodHgWVfDNu7Hm4AUirR3lU23XQZ7kJ89961AYBURm6G+XsOrONsAVBujwoWXQFGr8blJK2NwnnTUbSuGetUOmq/y9zP1mCig4W333SEUHhws/WdgcLYkD5DrvODJ9GIZFz54xsLiz3nbAnJGrsV7fw6MHPthFizTkY2i3RoPW3hiiIC8MkwmxuQfaYjlBgvwXO4uQbnmtnDSv+Scq8/IochUnapFxu0M0kWT9s2DDVL1AyXOLi6K205ZdKpWfurpgOephn9W3Sm+K848/wpJ6s3N8rjwLFfSv3MzPmWJP74JbPorHf+JFeVmp/jJRdiv9SiePV2Zw=
+  password: $PYPASS
   on:
     distributions: sdist bdist_wheel
     repo: archerysec/archerysec-cli
