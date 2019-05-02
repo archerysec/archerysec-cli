@@ -301,7 +301,8 @@ def main():
                 send_request = requests.post(url, files=files, headers=headers)
                 print(send_request.text)
             elif args.file_type == "XML":
-                files = {'filename': (None, args.file), 'project_id': (None, args.project_id),
+                f = (open(args.file, 'rb')).read()
+                files = {'filename': (None, f), 'project_id': (None, args.project_id),
                          'scanner': (None, args.scanner), 'scan_url': (None, args.TARGET)}
                 url = args.server + '/api/uploadscan/'
                 send_request = requests.post(url, files=files, headers=headers)
