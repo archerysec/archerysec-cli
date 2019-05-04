@@ -307,7 +307,7 @@ def main():
                 url = args.server + '/api/uploadscan/'
                 send_request = requests.post(url, files=files, headers=headers)
                 output = u' '.join((send_request)).encode('utf-8').strip()
-                print(output)
+                print(output.decode('UTF-8'))
     else:
         parser.print_help()
         print("")
