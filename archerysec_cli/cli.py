@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from optparse import OptionParser
 from optparse import OptionGroup
 from pyArchery import api
