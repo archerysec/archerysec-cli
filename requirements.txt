@@ -4,4 +4,4 @@ Click
 idna
 pyArchery
 requests
-urllib3==1.24
+urllib3
