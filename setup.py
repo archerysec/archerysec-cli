@@ -50,7 +50,7 @@ setup(
         'idna==2.7',
         'pyArchery',
         'requests==2.20.0',
-        'urllib3==1.24',
+        'urllib3==1.24.2',
     ],
     extras_require={
         'dev': [
