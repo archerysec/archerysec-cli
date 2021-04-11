@@ -9,7 +9,7 @@ notifications:
   email: false
 deploy:
   provider: pypi
-  user: archerysec
+  username: "__token__"
   password: $PYPASS
   on:
     distributions: sdist bdist_wheel
