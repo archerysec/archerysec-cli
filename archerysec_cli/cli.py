@@ -185,42 +185,39 @@ def main():
     auth_token = authenticate.data
 
     if args.token:
+        print(auth_token['token'])
         try:
-            for key, value in auth_token.items():
-                token = value
-                print(token)
+            token = auth_token['token']
+            print(token)
         except:
             print("Error !!!!")
             print ("Please check Username and Password")
     elif args.projectlist:
         try:
-            for key, value in auth_token.items():
-                token = value
-                project = archery.list_project(auth=token)
-                print("Project List :-")
-                print(project.data_json())
+            token = auth_token['token']
+            project = archery.list_project(auth=token)
+            print("Project List :-")
+            print(project.data_json())
         except:
             print("Error !!!!")
             print("Please check Username and Password")
     elif args.createproject:
         try:
-            for key, value in auth_token.items():
-                token = value
-                create_proj = archery.create_project(auth=token,
-                                                     project_name=args.project_name,
-                                                     project_disc=args.project_disc,
-                                                     project_start=args.project_start,
-                                                     project_end=args.project_end,
-                                                     project_owner=args.project_owner)
-                print(create_proj.data_json())
+            token = auth_token['token']
+            create_proj = archery.create_project(auth=token,
+                                                 project_name=args.project_name,
+                                                 project_disc=args.project_disc,
+                                                 project_start=args.project_start,
+                                                 project_end=args.project_end,
+                                                 project_owner=args.project_owner)
+            print(create_proj.data_json())
         except:
             print("Error !!!!")
             print("Please check Username and Password")
     elif args.zapscanlist:
-        for key, value in auth_token.items():
-            token = value
-            all_web_scans = archery.web_scans(auth=token)
-            print(all_web_scans.data_json())
+        token = auth_token['token']
+        all_web_scans = archery.web_scans(auth=token)
+        print(all_web_scans.data_json())
 
     elif args.zapscanresult:
         for key, value in auth_token.items():
@@ -232,83 +229,76 @@ def main():
             print(web_scan_result.data_json())
 
     elif args.zapscanstatus:
-        for key, value in auth_token.items():
-            token = value
-            zap_scan_status = archery.zap_scan_status(
-                auth=token,
-                scan_id=args.scan_id,
-            )
-            print(zap_scan_status.data_json())
+        token = auth_token['token']
+        zap_scan_status = archery.zap_scan_status(
+            auth=token,
+            scan_id=args.scan_id,
+        )
+        print(zap_scan_status.data_json())
 
     elif args.zapscan:
-        for key, value in auth_token.items():
-            token = value
-            web_scan_create = archery.create_webscan(
-                auth=token,
-                scan_url=args.target_url,
-                project_id=args.project_id,
-                scanner='zap_scan'
-            )
-            print(web_scan_create.data_json())
+        token = auth_token['token']
+        web_scan_create = archery.create_webscan(
+            auth=token,
+            scan_url=args.target_url,
+            project_id=args.project_id,
+            scanner='zap_scan'
+        )
+        print(web_scan_create.data_json())
 
     elif args.arachni:
-        for key, value in auth_token.items():
-            token = value
-            web_scan_create = archery.create_webscan(
-                auth=token,
-                scan_url=args.target_url,
-                project_id=args.project_id,
-                scanner='arachni'
-            )
-            print(web_scan_create.data_json())
+        token = auth_token['token']
+        web_scan_create = archery.create_webscan(
+            auth=token,
+            scan_url=args.target_url,
+            project_id=args.project_id,
+            scanner='arachni'
+        )
+        print(web_scan_create.data_json())
 
     elif args.openvaslist:
-        for key, value in auth_token.items():
-            token = value
-            network_scans = archery.network_scan(
-                auth=token,
-            )
+        token = auth_token['token']
+        network_scans = archery.network_scan(
+            auth=token,
+        )
 
-            print(network_scans.data_json())
+        print(network_scans.data_json())
 
     elif args.openvasscan:
-        for key, value in auth_token.items():
-            token = value
-            create_network_scan = archery.create_newtworkscan(
-                auth=token,
-                scan_ip=args.target_ip,
-                project_id=args.project_id
-            )
-            print(create_network_scan.data_json())
+        token = auth_token['token']
+        create_network_scan = archery.create_newtworkscan(
+            auth=token,
+            scan_ip=args.target_ip,
+            project_id=args.project_id
+        )
+        print(create_network_scan.data_json())
 
     elif args.openvas_result:
-        for key, value in auth_token.items():
-            token = value
-            network_result = archery.networkscan_result(
-                auth=token,
-                scan_id=args.scan_id
-            )
+        token = auth_token['token']
+        network_result = archery.networkscan_result(
+            auth=token,
+            scan_id=args.scan_id
+        )
 
-            print(network_result)
+        print(network_result)
 
     elif args.upload:
-        for key, value in auth_token.items():
-            token = value
-            headers = {'Authorization': 'JWT ' + token}
-            if args.file_type == "JSON":
-                f = (open(args.file, 'rb')).read()
-                files = {'filename': (None, f), 'project_id': (None, args.project_id),
-                         'scanner': (None, args.scanner), 'scan_url': (None, args.TARGET)}
-                url = args.server + '/api/uploadscan/'
-                send_request = requests.post(url, files=files, headers=headers)
-                print(str(send_request.text))
-            elif args.file_type == "XML":
-                f = (open(args.file, 'rb')).read()
-                files = {'filename': (None, f), 'project_id': (None, args.project_id),
-                         'scanner': (None, args.scanner), 'scan_url': (None, args.TARGET)}
-                url = args.server + '/api/uploadscan/'
-                send_request = requests.post(url, files=files, headers=headers)
-                print(str(send_request.text))
+        token = auth_token['token']
+        headers = {'Authorization': 'Bearer ' + token}
+        if args.file_type == "JSON":
+            f = (open(args.file, 'rb')).read()
+            files = {'filename': (None, f), 'project_id': (None, args.project_id),
+                     'scanner': (None, args.scanner), 'scan_url': (None, args.TARGET)}
+            url = args.server + '/api/uploadscan/'
+            send_request = requests.post(url, files=files, headers=headers)
+            print(str(send_request.text))
+        elif args.file_type == "XML":
+            f = (open(args.file, 'rb')).read()
+            files = {'filename': (None, f), 'project_id': (None, args.project_id),
+                     'scanner': (None, args.scanner), 'scan_url': (None, args.TARGET)}
+            url = args.server + '/api/uploadscan/'
+            send_request = requests.post(url, files=files, headers=headers)
+            print(str(send_request.text))
     else:
         parser.print_help()
         print("")
