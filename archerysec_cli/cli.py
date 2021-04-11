@@ -185,7 +185,6 @@ def main():
     auth_token = authenticate.data
 
     if args.token:
-        print(auth_token['token'])
         try:
             token = auth_token['token']
             print(token)
