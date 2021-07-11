@@ -283,7 +283,7 @@ def main():
 
     elif args.upload:
         token = auth_token['token']
-        headers = {'Authorization': 'Bearer ' + token}
+        headers = {'Authorization': 'JWT ' + token}
         if args.file_type == "JSON":
             f = (open(args.file, 'rb')).read()
             files = {'filename': (None, f), 'project_id': (None, args.project_id),
