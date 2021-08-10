@@ -20,7 +20,7 @@ $ pip install -r requirements.txt
 ## Usage
 
 To use Archery CLI, you need to set the port Archery runs on (defaults to 8000) and the path to the folder in which Archery is installed. 
-You can Use Archery installation instruction from [Archery DOC](https://docs.archerysec.info/getting-started/Docker-install/)
+You can Use Archery installation instruction from [Archery DOC](https://docs.archerysec.com/#quick-start)
 
 Archery CLI can then be used with the following commands:
 ```
