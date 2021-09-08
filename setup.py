@@ -22,7 +22,7 @@ from setuptools import setup
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-with open(os.path.join(here, 'archerysec_cli', '__init__.py'), 'rb') as f:
+with open(os.path.join(here, 'archerysec_cli/cli', '__init__.py'), 'rb') as f:
     version = str(ast.literal_eval(re.search(r'__version__\s*=\s*(.*)', f.read().decode('utf-8')).group(1)))
 
 with open('README.rst', 'r') as f:
