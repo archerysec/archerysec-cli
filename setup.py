@@ -22,7 +22,7 @@ from setuptools import setup
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-with open(os.path.join(here, 'archerysec_cli/cli', '__init__.py'), 'rb') as f:
+with open(os.path.join(here, 'archerysec_cli', '__init__.py'), 'rb') as f:
     version = str(ast.literal_eval(re.search(r'__version__\s*=\s*(.*)', f.read().decode('utf-8')).group(1)))
 
 with open('README.rst', 'r') as f:
@@ -43,6 +43,28 @@ setup(
     packages=[
         'archerysec_cli',
     ],
+    install_requires=[
+        'click==7.1.2',
+        'docker==5.0.0',
+        'idna==2.10',
+        'jmespath==0.10.0',
+        'python-dateutil==2.8.1',
+        'PyYAML==5.4.1',
+        'websocket-client==0.58.0',
+        'wget==3.2',
+    ],
+    extras_require={
+        'dev': [
+            'coverage',
+            'ddt',
+            'mock',
+            'pep8',
+            'pylint',
+            'pytest',
+            'responses',
+        ]
+    },
+
     include_package_data=True,
     entry_points={
         'console_scripts': [
