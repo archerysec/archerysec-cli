@@ -43,30 +43,10 @@ setup(
     packages=[
         'archerysec_cli',
     ],
-    install_requires=[
-        'certifi',
-        'chardet',
-        'Click',
-        'idna',
-        'pyArchery',
-        'requests',
-        'urllib3',
-    ],
-    extras_require={
-        'dev': [
-            'coverage',
-            'ddt',
-            'mock',
-            'pep8',
-            'pylint',
-            'pytest',
-            'responses',
-        ],
-    },
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'archerysec-cli=archerysec_cli.cli:main',
+            'archerysec-cli=archerysec_cli.cli.cli:main',
         ],
     },
     test_suite='tests',
