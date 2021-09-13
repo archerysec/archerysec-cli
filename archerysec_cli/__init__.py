@@ -17,4 +17,4 @@
 ======================== END OF LICENSE NOTICE ========================
   Primary Author: Anand Tiwari
 """
-__version__ = '3.1.6'
+__version__ = '3.1.7'

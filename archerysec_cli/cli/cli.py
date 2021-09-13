@@ -79,7 +79,7 @@ print(data)
                                                  'nikto, '
                                                  'twistlock, '
                                                  'brakeman, '
-                                                 
+
                                                  ')')
 @click.option('--threshold', '-th', "threshold", help='threshold type (ex. fail, pass)')
 @click.option('--project', "projectid", help='Project ID')
@@ -87,13 +87,17 @@ print(data)
 @click.option('--upload', "upload", help="Upload Report", is_flag=True)
 @click.option('--createproject', "projectcreate", help="Create New Project", is_flag=True)
 @click.option('--bandit', "bandit", help="Run Bandit Scan", is_flag=True)
+@click.option('--zap-base-line-scan', "zapbaselinescan", help="Run ZAP Base Line Scan", is_flag=True)
+@click.option('--zap-full-scan', "zapfullscan", help="Run ZAP Full Scan", is_flag=True)
+@click.option('--findsecbugs-scan', "findsecbugs", help="Run FindSecBugs Scan", is_flag=True)
 @click.option('--dependency-check', "dependencycheck", help="Run dependency-check Scan", is_flag=True)
 @click.option('--project_name', "projectname", help="Create New Project")
 @click.option('--project_disc', "projectdisc", help="Create New Project")
 @click.option('--code_path', "code_path", help="Path of the source code")
 @click.option('--report_path', "reportpath", help="Path of the Report")
 def scan_action(host, token, filetype, target, scanner, projectid, path, upload, projectcreate, projectname,
-                projectdisc, bandit, reportpath, code_path, cicd_id, dependencycheck, threshold):
+                projectdisc, bandit, reportpath, code_path, cicd_id, dependencycheck, threshold,
+                zapbaselinescan, zapfullscan, findsecbugs):
     if upload:
         upload_report(
             host=host,
@@ -122,7 +126,7 @@ def scan_action(host, token, filetype, target, scanner, projectid, path, upload,
             host=host,
             token=token,
             project=projectid,
-            bandit=bandit,
+            bandit='bandit',
             cicd_id=cicd_id,
             reportpath=reportpath
         )
@@ -131,7 +135,37 @@ def scan_action(host, token, filetype, target, scanner, projectid, path, upload,
             host=host,
             token=token,
             project=projectid,
-            dependencycheck=dependencycheck,
+            dependencycheck='dependencycheck',
+            cicd_id=cicd_id,
+            reportpath=reportpath
+        )
+
+    if zapbaselinescan:
+        zap_base_line_scan(
+            host=host,
+            token=token,
+            project=projectid,
+            cicd_id=cicd_id,
+            reportpath=reportpath,
+            zap_scan='zap_scan',
+        )
+
+    if zapfullscan:
+        zap_full_scan(
+            host=host,
+            token=token,
+            project=projectid,
+            zap_scan='zap_scan',
+            cicd_id=cicd_id,
+            reportpath=reportpath
+        )
+
+    if findsecbugs:
+        findsecbugs_scan(
+            host=host,
+            token=token,
+            project=projectid,
+            findsecbugs='findsecbugs',
             cicd_id=cicd_id,
             reportpath=reportpath
         )
@@ -291,6 +325,129 @@ def dependencycheck_scan(host,
         scanner="dependencycheck",
         project=project,
         report_path=report_path + "/dependency-check-report.xml",
+        threshold_status='fail',
+        threshold=threshold,
+        threshold_high=threshold_high,
+        threshold_medium=threshold_medium,
+        threshold_low=threshold_low,
+    )
+
+
+def zap_base_line_scan(host,
+                       token,
+                       project,
+                       zap_scan,
+                       cicd_id,
+                       reportpath
+                       ):
+    cicd_policies = get_cicd_policies(host, token, project, scanner=zap_scan, target='', cicd_id=cicd_id)
+    target = cicd_policies['target']
+    report_path = reportpath
+    scanner = ScannersRunner(pwd=target, report_pwd=report_path)
+    scanner.owasp_zap_baseline_scan(target=target)
+
+    target = cicd_policies['target_name']
+    threshold = cicd_policies['threshold']
+    threshold_high = ''
+    threshold_medium = ''
+    threshold_low = ''
+    if threshold == 'high':
+        threshold_high = cicd_policies['threshold_count']
+    elif threshold == 'medium':
+        threshold_medium = cicd_policies['threshold_count']
+    elif threshold == 'low':
+        threshold_low = cicd_policies['threshold_count']
+
+    upload_report(
+        host=host,
+        token=token,
+        file_type="XML",
+        target=target,
+        scanner="zap_scan",
+        project=project,
+        report_path=report_path + "/archerysec-owasp-zap-base-line-report.xml",
+        threshold_status='fail',
+        threshold=threshold,
+        threshold_high=threshold_high,
+        threshold_medium=threshold_medium,
+        threshold_low=threshold_low,
+    )
+
+
+def zap_full_scan(host,
+                  token,
+                  project,
+                  zap_scan,
+                  cicd_id,
+                  reportpath
+                  ):
+    cicd_policies = get_cicd_policies(host, token, project, scanner=zap_scan, target='', cicd_id=cicd_id)
+    target = cicd_policies['target']
+    report_path = reportpath
+    scanner = ScannersRunner(pwd=target, report_pwd=report_path)
+    scanner.owasp_zap_full_scan(target=target)
+
+    target = cicd_policies['target_name']
+    threshold = cicd_policies['threshold']
+    threshold_high = ''
+    threshold_medium = ''
+    threshold_low = ''
+    if threshold == 'high':
+        threshold_high = cicd_policies['threshold_count']
+    elif threshold == 'medium':
+        threshold_medium = cicd_policies['threshold_count']
+    elif threshold == 'low':
+        threshold_low = cicd_policies['threshold_count']
+
+    upload_report(
+        host=host,
+        token=token,
+        file_type="XML",
+        target=target,
+        scanner="zap_scan",
+        project=project,
+        report_path=report_path + "/archerysec-owasp-zap-full-scan-report.xml",
+        threshold_status='fail',
+        threshold=threshold,
+        threshold_high=threshold_high,
+        threshold_medium=threshold_medium,
+        threshold_low=threshold_low,
+    )
+
+
+def findsecbugs_scan(host,
+                     token,
+                     project,
+                     findsecbugs,
+                     cicd_id,
+                     reportpath
+                     ):
+    cicd_policies = get_cicd_policies(host, token, project, scanner=findsecbugs, target='', cicd_id=cicd_id)
+    code_path = cicd_policies['target']
+    report_path = reportpath
+    scanner = ScannersRunner(pwd=code_path, report_pwd=report_path)
+    scanner.findsecbugs_scan()
+
+    target = cicd_policies['target_name']
+    threshold = cicd_policies['threshold']
+    threshold_high = ''
+    threshold_medium = ''
+    threshold_low = ''
+    if threshold == 'high':
+        threshold_high = cicd_policies['threshold_count']
+    elif threshold == 'medium':
+        threshold_medium = cicd_policies['threshold_count']
+    elif threshold == 'low':
+        threshold_low = cicd_policies['threshold_count']
+
+    upload_report(
+        host=host,
+        token=token,
+        file_type="XML",
+        target=target,
+        scanner="findbugs",
+        project=project,
+        report_path=report_path + "/findsecbugs-report.xml",
         threshold_status='fail',
         threshold=threshold,
         threshold_high=threshold_high,

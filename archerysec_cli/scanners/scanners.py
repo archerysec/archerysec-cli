@@ -72,3 +72,70 @@ class ScannersRunner(object):
             # print(status)
         container.remove()
         print("Scan Completed")
+
+    def owasp_zap_baseline_scan(self, target):
+        print("Scan Running")
+        client = docker.from_env()
+        d = client.containers.run(
+            "archerysec/owasp-zap:latest",
+            volumes={
+                self.report_pwd: {"bind": "/zap/wrk", "mode": "rw"},
+            },
+            command='zap-baseline.py -t %s -x archerysec-owasp-zap-base-line-report.xml' % target,
+            detach=True,
+
+        )
+        c_id = d.id
+        container = client.containers.get(c_id)
+        status = container.status
+        while status == "running":
+            time.sleep(5)
+            container = client.containers.get(c_id)
+            status = container.status
+            # print(status)
+        container.remove()
+        print("Scan Completed")
+
+    def owasp_zap_full_scan(self, target):
+        print("Scan Running")
+        client = docker.from_env()
+        d = client.containers.run(
+            "archerysec/owasp-zap:latest",
+            volumes={
+                self.report_pwd: {"bind": "/zap/wrk", "mode": "rw"},
+            },
+            command='zap-full-scan.py -t %s -x archerysec-owasp-zap-full-scan-report.xml' % target,
+            detach=True,
+        )
+        c_id = d.id
+        container = client.containers.get(c_id)
+        status = container.status
+        while status == "running":
+            time.sleep(5)
+            container = client.containers.get(c_id)
+            status = container.status
+            # print(status)
+        container.remove()
+        print("Scan Completed")
+
+    def findsecbugs_scan(self):
+        print("Scan Running")
+        client = docker.from_env()
+        d = client.containers.run(
+            "archerysec/findsecbugs:latest",
+            volumes={
+                self.pwd: {"bind": "/src", "mode": "rw"},
+                self.report_pwd: {"bind": "/report", "mode": "rw"},
+            },
+            detach=True,
+        )
+        c_id = d.id
+        container = client.containers.get(c_id)
+        status = container.status
+        while status == "running":
+            time.sleep(5)
+            container = client.containers.get(c_id)
+            status = container.status
+            # print(status)
+        container.remove()
+        print("Scan Completed")
