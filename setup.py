@@ -14,23 +14,35 @@ C#                   _
 # This file is part of ArcherySec Project.
 """
 
+from setuptools import (
+    find_packages,
+    setup,
+)
+
 import ast
 import os
 import re
 
-from setuptools import setup
 
-here = os.path.abspath(os.path.dirname(__file__))
+from pathlib import Path
 
-with open(os.path.join(here, 'archerysec_cli', '__init__.py'), 'rb') as f:
-    version = str(ast.literal_eval(re.search(r'__version__\s*=\s*(.*)', f.read().decode('utf-8')).group(1)))
+def read(rel_path):
+    init = Path(__file__).resolve().parent / rel_path
+    return init.read_text('utf-8', 'ignore')
+
+def get_version(rel_path):
+    for line in read(rel_path).splitlines():
+        if line.startswith('__version__'):
+            return line.split('\'')[1]
+    raise RuntimeError('Unable to find version string.')
+
 
 with open('README.rst', 'r') as f:
     long_description = f.read()
 
 setup(
     name='archerysec_cli',
-    version=version,
+    version=get_version('archerysec_cli/__init__.py'),
     description='A commandline tool that wraps'
                 ' the Archerysec REST API for'
                 ' controlling Archery and executing '
@@ -40,9 +52,9 @@ setup(
     author='Anand Tiwari',
     author_email=' ',
     license=' ',
-    packages=[
-        'archerysec_cli',
-    ],
+    packages=find_packages(include=[
+        'archerysec_cli', 'archerysec_cli.*',
+    ]),
     install_requires=[
         'click==7.1.2',
         'docker==5.0.0',
