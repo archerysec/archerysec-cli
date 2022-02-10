@@ -20,6 +20,7 @@
 import time
 
 import docker
+import subprocess
 
 
 class ScannersRunner(object):
@@ -93,6 +94,8 @@ class ScannersRunner(object):
             container = client.containers.get(c_id)
             status = container.status
             # print(status)
+        subprocess.call(
+            ["docker", "cp", c_id + ':' + '/zap/wrk/archerysec-owasp-zap-base-line-report.xml', self.report_pwd])
         container.remove()
         print("Scan Completed")
 
@@ -115,6 +118,8 @@ class ScannersRunner(object):
             container = client.containers.get(c_id)
             status = container.status
             # print(status)
+        subprocess.call(
+            ["docker", "cp", c_id + ':' + '/zap/wrk/archerysec-owasp-zap-full-scan-report.xml', self.report_pwd])
         container.remove()
         print("Scan Completed")
 
