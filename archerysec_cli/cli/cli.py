@@ -25,9 +25,14 @@ import json
 import yaml
 from yaml import safe_load
 
+from archerysec_cli import __version__
 from archerysec_cli.scanners.scanners import ScannersRunner
 from archerysec_cli.util import check
 from archerysec_cli.util.api import API
+from archerysec_cli.formatters import (
+    cli,
+    json
+)
 
 data = """
 
@@ -39,10 +44,10 @@ data = """
  /_/    \_\_|  \___|_| |_|\___|_|   \__, |_____/ \___|\___|
                                      __/ |                 
                                     |___/                  
-               
- Copyright (C) 2021 ArcherySec CLI v2.0.1
 """
 print(data)
+print(cli.print_tool_info(__version__))
+
 
 
 @click.command()
@@ -95,6 +100,7 @@ print(data)
 @click.option('--project_disc', "projectdisc", help="Create New Project")
 @click.option('--code_path', "code_path", help="Path of the source code")
 @click.option('--report_path', "reportpath", help="Path of the Report")
+
 def scan_action(host, token, filetype, target, scanner, projectid, path, upload, projectcreate, projectname,
                 projectdisc, bandit, reportpath, code_path, cicd_id, dependencycheck, threshold,
                 zapbaselinescan, zapfullscan, findsecbugs):
@@ -169,7 +175,6 @@ def scan_action(host, token, filetype, target, scanner, projectid, path, upload,
             cicd_id=cicd_id,
             reportpath=reportpath
         )
-
 
 def get_cicd_policies(host, token, project, scanner, target, cicd_id):
     archerysec = API(

@@ -33,8 +33,8 @@ class ScannersRunner(object):
         d = client.containers.run(
             "archerysec/bandit:latest",
             volumes={
-                self.pwd: {"bind": "/src", "mode": "rw"},
-                self.report_pwd: {"bind": "/report", "mode": "rw"},
+                self.pwd: {"bind": "/src"},
+                self.report_pwd: {"bind": "/report"},
             },
             detach=True,
         )
@@ -55,9 +55,9 @@ class ScannersRunner(object):
         d = client.containers.run(
             "archerysec/dependency-check:latest",
             volumes={
-                self.pwd: {"bind": "/src", "mode": "rw"},
-                self.report_pwd: {"bind": "/report", "mode": "rw"},
-                data: {"bind": "/usr/share/dependency-check/data", "mode": "rw"},
+                self.pwd: {"bind": "/src"},
+                self.report_pwd: {"bind": "/report"},
+                data: {"bind": "/usr/share/dependency-check/data"},
             },
             command='--scan /src --format "ALL" --project "dependency-check scan: %s" --out /report' % self.pwd,
             detach=True,
@@ -79,7 +79,7 @@ class ScannersRunner(object):
         d = client.containers.run(
             "archerysec/owasp-zap:latest",
             volumes={
-                self.report_pwd: {"bind": "/zap/wrk", "mode": "rw"},
+                self.report_pwd: {"bind": "/zap/wrk"},
             },
             command='zap-baseline.py -t %s -x archerysec-owasp-zap-base-line-report.xml' % target,
             detach=True,
@@ -102,7 +102,7 @@ class ScannersRunner(object):
         d = client.containers.run(
             "archerysec/owasp-zap:latest",
             volumes={
-                self.report_pwd: {"bind": "/zap/wrk", "mode": "rw"},
+                self.report_pwd: {"bind": "/zap/wrk"},
             },
             command='zap-full-scan.py -t %s -x archerysec-owasp-zap-full-scan-report.xml' % target,
             detach=True,
@@ -124,8 +124,8 @@ class ScannersRunner(object):
         d = client.containers.run(
             "archerysec/findsecbugs:latest",
             volumes={
-                self.pwd: {"bind": "/src", "mode": "rw"},
-                self.report_pwd: {"bind": "/report", "mode": "rw"},
+                self.pwd: {"bind": "/src"},
+                self.report_pwd: {"bind": "/report"},
             },
             detach=True,
         )
