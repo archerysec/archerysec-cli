@@ -33,8 +33,8 @@ class ScannersRunner(object):
         d = client.containers.run(
             "archerysec/bandit:latest",
             volumes={
-                self.pwd: {"bind": "/src"},
-                self.report_pwd: {"bind": "/report"},
+                self.pwd: {"bind": "/src", "mode": "rw"},
+                self.report_pwd: {"bind": "/report", "mode": "rw"},
             },
             detach=True,
         )
@@ -55,9 +55,9 @@ class ScannersRunner(object):
         d = client.containers.run(
             "archerysec/dependency-check:latest",
             volumes={
-                self.pwd: {"bind": "/src"},
-                self.report_pwd: {"bind": "/report"},
-                data: {"bind": "/usr/share/dependency-check/data"},
+                self.pwd: {"bind": "/src", "mode": "rw"},
+                self.report_pwd: {"bind": "/report", "mode": "rw"},
+                data: {"bind": "/usr/share/dependency-check/data", "mode": "rw"},
             },
             command='--scan /src --format "ALL" --project "dependency-check scan: %s" --out /report' % self.pwd,
             detach=True,
@@ -124,8 +124,8 @@ class ScannersRunner(object):
         d = client.containers.run(
             "archerysec/findsecbugs:latest",
             volumes={
-                self.pwd: {"bind": "/src"},
-                self.report_pwd: {"bind": "/report"},
+                self.pwd: {"bind": "/src", "mode": "rw"},
+                self.report_pwd: {"bind": "/report", "mode": "rw"},
             },
             detach=True,
         )
