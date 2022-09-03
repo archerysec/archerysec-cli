@@ -23,7 +23,7 @@ from datetime import datetime
 __title__ = 'archerysec-cli'
 __authors__ = 'Anand Tiwari'
 __copyright__ = f'Copyright {datetime.now().year} Anand Tiwari, ArcherySec'
-__version__ = '3.1.13'
+__version__ = '3.1.14'
 __version_info__ = tuple(int(i) for i in __version__.split('.'))
 __all__ = [
     '__title__',

@@ -252,6 +252,9 @@ def upload_report(
     elif file_type == "XML":
         scan_data = archerysec.xml_upload(file=report_path)
         scan_data_parser(scan_data, threshold_status, threshold, threshold_high, threshold_medium, threshold_low)
+    elif file_type == "CSV":
+        scan_data = archerysec.xml_upload(file=report_path)
+        scan_data_parser(scan_data, threshold_status, threshold, threshold_high, threshold_medium, threshold_low)
     else:
         print("File Type Not Support")
 
