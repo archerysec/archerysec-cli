@@ -218,11 +218,31 @@ $ archerysec-cli -h http://127.0.0.1:8000 -t VpVSD99bX25yW27f-yv8q562U9ObZfbWnBL
 ### Upload twistlock scan
 
 ```bash
-$ archerysec-cli -h http://127.0.0.1:8000 -t VpVSD99bX25yW27f-yv8q562U9ObZfbWnBLVkjfRjQ-FR52p4GlhjpYuCJwY56_x -p /report/sample/twistlock.json --file-type=JSON --target=ASFLKSF --scanner=twistlock --project=eaf6f89e-56ee-4ef7-8257-07b7136c9e31 --upload
+archerysec-cli -h http://127.0.0.1:8000 -t VpVSD99bX25yW27f-yv8q562U9ObZfbWnBLVkjfRjQ-FR52p4GlhjpYuCJwY56_x -p /report/sample/twistlock.json --file-type=JSON --target=ASFLKSF --scanner=twistlock --project=eaf6f89e-56ee-4ef7-8257-07b7136c9e31 --upload
 ```
 
 ### Upload brakeman scan
 
 ```bash
-$ archerysec-cli -h http://127.0.0.1:8000 -t VpVSD99bX25yW27f-yv8q562U9ObZfbWnBLVkjfRjQ-FR52p4GlhjpYuCJwY56_x -p /report/sample/brakeman.json --file-type=JSON --target=ASFLKSF --scanner=brakeman --project=eaf6f89e-56ee-4ef7-8257-07b7136c9e31 --upload
+archerysec-cli -h http://127.0.0.1:8000 -t VpVSD99bX25yW27f-yv8q562U9ObZfbWnBLVkjfRjQ-FR52p4GlhjpYuCJwY56_x -p /report/sample/brakeman.json --file-type=JSON --target=ASFLKSF --scanner=brakeman --project=eaf6f89e-56ee-4ef7-8257-07b7136c9e31 --upload
+```
+
+### Upload Prisma Cloud CSPM
+
+```
+cherysec-cli -h http://127.0.0.1:8000 -t 2L_EWKqpeoncNXAI1fefGRl8UYu6oyP2lxw056PrQdVLYQ_Z0DIgr2EhZdj_KMqN -p  /report-sample/Prisma\ CSPM/prisma-report-sample.csv --file-type=CSV --target=ASFLKSF --scanner=prisma_cspm --project=fa8afe05-d074-4ab8-b7be-3c0626f2cc19 --upload
+```
+
+### Upload scoutsuite
+
+```
+archerysec-cli -h http://127.0.0.1:8000 -t 2L_EWKqpeoncNXAI1fefGRl8UYu6oyP2lxw056PrQdVLYQ_Z0DIgr2EhZdj_KMqN -p /report-sample/ScoutSuite/sample-report.js --file-type=JSON --target=ASFLKSF --scanner=scoutsuite --project=fa8afe05-d074-4ab8-b7be-3c0626f2cc19 --upload
+
+```
+
+### Upload Wiz Report 
+
+```
+archerysec-cli -h http://127.0.0.1:8000 -t 2L_EWKqpeoncNXAI1fefGRl8UYu6oyP2lxw056PrQdVLYQ_Z0DIgr2EhZdj_KMqN -p /report-sample/Wiz/wiz-sample-report.csv --file-type=CSV --target=ASFLKSF --scanner=wiz --project=fa8afe05-d074-4ab8-b7be-3c0626f2cc19 --upload
+
 ```
