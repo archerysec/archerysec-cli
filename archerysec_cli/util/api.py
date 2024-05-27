@@ -83,6 +83,25 @@ class API(object):
         send_request = requests.post(url, files=files, headers=headers)
         return send_request.json()
 
+    def html_upload(self, file):
+        """
+
+        :param file:
+        :return:
+        """
+
+        headers = {"x-api-key": self.token}
+        f = (open(file, "rb")).read()
+        files = {
+            "filename": (None, f),
+            "project_id": (None, self.project_id),
+            "scanner": (None, self.scanner),
+            'scan_url': (None, self.target)
+        }
+        url = self.host + "/api/v1/uploadscan/"
+        send_request = requests.post(url, files=files, headers=headers)
+        return send_request.json()
+
     def create_project(self, project_name, project_disc):
         """
 

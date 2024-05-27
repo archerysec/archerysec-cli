@@ -49,7 +49,6 @@ print(data)
 print(cli.print_tool_info(__version__))
 
 
-
 @click.command()
 @click.option("--host", "-h", "host", help="Provide ArcherySec End Point Address.")
 @click.option("--token", "-t", "token", help="Provide Auth token from ArcherySec.")
@@ -84,7 +83,7 @@ print(cli.print_tool_info(__version__))
                                                  'nikto, '
                                                  'twistlock, '
                                                  'brakeman, '
-
+                                                 'Bearer'
                                                  ')')
 @click.option('--threshold', '-th', "threshold", help='threshold type (ex. fail, pass)')
 @click.option('--project', "projectid", help='Project ID')
@@ -100,7 +99,6 @@ print(cli.print_tool_info(__version__))
 @click.option('--project_disc', "projectdisc", help="Create New Project")
 @click.option('--code_path', "code_path", help="Path of the source code")
 @click.option('--report_path', "reportpath", help="Path of the Report")
-
 def scan_action(host, token, filetype, target, scanner, projectid, path, upload, projectcreate, projectname,
                 projectdisc, bandit, reportpath, code_path, cicd_id, dependencycheck, threshold,
                 zapbaselinescan, zapfullscan, findsecbugs):
@@ -175,6 +173,7 @@ def scan_action(host, token, filetype, target, scanner, projectid, path, upload,
             cicd_id=cicd_id,
             reportpath=reportpath
         )
+
 
 def get_cicd_policies(host, token, project, scanner, target, cicd_id):
     archerysec = API(
@@ -254,6 +253,9 @@ def upload_report(
         scan_data_parser(scan_data, threshold_status, threshold, threshold_high, threshold_medium, threshold_low)
     elif file_type == "CSV":
         scan_data = archerysec.xml_upload(file=report_path)
+        scan_data_parser(scan_data, threshold_status, threshold, threshold_high, threshold_medium, threshold_low)
+    elif file_type == "HTML":
+        scan_data = archerysec.html_upload(file=report_path)
         scan_data_parser(scan_data, threshold_status, threshold, threshold_high, threshold_medium, threshold_low)
     else:
         print("File Type Not Support")
