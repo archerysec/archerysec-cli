@@ -246,3 +246,10 @@ archerysec-cli -h http://127.0.0.1:8000 -t 2L_EWKqpeoncNXAI1fefGRl8UYu6oyP2lxw05
 archerysec-cli -h http://127.0.0.1:8000 -t 2L_EWKqpeoncNXAI1fefGRl8UYu6oyP2lxw056PrQdVLYQ_Z0DIgr2EhZdj_KMqN -p /report-sample/Wiz/wiz-sample-report.csv --file-type=CSV --target=ASFLKSF --scanner=wiz --project=fa8afe05-d074-4ab8-b7be-3c0626f2cc19 --upload
 
 ```
+
+### Upload Bearer html report 
+
+```commandline
+
+archerysec-cli -h http://127.0.0.1:8000 -t 2L_EWKqpeoncNXAI1fefGRl8UYu6oyP2lxw056PrQdVLYQ_Z0DIgr2EhZdj_KMqN -p ../archerysec_2.0/report-sample/Bearer/report.html  --file-type=HTML --target=ASFLKSF --scanner=Bearer --project=fa8afe05-d074-4ab8-b7be-3c0626f2cc19  --upload
+```
