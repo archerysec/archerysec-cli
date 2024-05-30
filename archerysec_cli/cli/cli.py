@@ -84,6 +84,7 @@ print(cli.print_tool_info(__version__))
                                                  'twistlock, '
                                                  'brakeman, '
                                                  'Bearer'
+                                                 'checkov'
                                                  ')')
 @click.option('--threshold', '-th', "threshold", help='threshold type (ex. fail, pass)')
 @click.option('--project', "projectid", help='Project ID')
